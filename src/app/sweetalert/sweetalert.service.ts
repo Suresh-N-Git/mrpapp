@@ -30,11 +30,11 @@ export class SweetalertService {
     confirmText = 'OK'
   ) {
     return Swal.fire({
-       ...this.baseOptions,
+      ...this.baseOptions,
       title,
       text,
       icon,
-      width: this.isMobile ? '90vw' : '512px',//👈 make it smaller (default is ~32em ≈ 512px)
+      width: this.isMobile ? '80vw' : '512px',//👈 make it smaller (default is ~32em ≈ 512px)
       // padding: '1em',           // reduce internal spacing
       allowOutsideClick: false,  // 👈 disables click outside
       allowEscapeKey: false,     // 👈 disables ESC key
@@ -49,17 +49,18 @@ export class SweetalertService {
     icon: SweetAlertIcon = 'warning'
   ) {
     return Swal.fire({
-       ...this.baseOptions,
+      ...this.baseOptions,
       title,
       text,
       icon,
+      width: this.isMobile ? '80vw' : '512px',//👈 make it smaller (default is ~32em ≈ 512px)
       allowOutsideClick: false,  // 👈 disables click outside
       allowEscapeKey: false,     // 👈 disables ESC key
       allowEnterKey: false,      // 👈 disables Enter key
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
-    
+
     });
   }
 
@@ -74,6 +75,7 @@ export class SweetalertService {
       title,
       text,
       icon,
+      width: this.isMobile ? '80vw' : '512px',//👈 make it smaller (default is ~32em ≈ 512px)
       timer: duration,
       showConfirmButton: false,
       timerProgressBar: true,
