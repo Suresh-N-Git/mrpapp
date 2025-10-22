@@ -45,9 +45,16 @@ export class LoginComponent {
       txtConfirmPassword: ['']
     })
 
-    this.showInfo('Success', 'Success Message', 'success')
-     // this.showConfirm()
-    // this.sweetAlert.show("Success","Confirm Sweet Alert", "success")
+    // this.sweetAlert.show('Success', 'Success Message', 'success')
+    // this.sweetAlert.autoClose('Success', 'Success Message')
+    this.sweetAlert.confirm('Proceed ?', 'Do you really want to continue?')
+      .then(res => {
+        if (res.isConfirmed) {
+          this.sweetAlert.show('Confirmed', 'Action executed successfully!', 'success');
+        } else {
+          this.sweetAlert.autoClose('Cancelled', 'By User', 'info');
+        }
+      });
     // this.getLoginTableSchema();
     // this.getChangeTableSchema();
   }
@@ -72,19 +79,6 @@ export class LoginComponent {
     )
   }
 
-   showInfo(typeOfInfo, infoMessage, infoIcon) {
-    // infoIcon = error, info, question, success, warning
-    this.sweetAlert.show(typeOfInfo, infoMessage, infoIcon);
-  }
-
-  showConfirm() {
-    this.sweetAlert.confirm('Proceed ?', 'Do you really want to continue?')
-      .then(res => {
-        if (res.isConfirmed) {
-          this.sweetAlert.show('Confirmed', 'Action executed successfully!', 'success');
-        }
-      });
-  }
 
   loginSubmit() {
     if (this.loginForm.invalid) {
