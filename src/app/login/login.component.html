@@ -9,7 +9,7 @@
       </div>
       <!-- <div class="col-sm-12" style="text-align: right;"> <img src="icons/lock.svg" alt="lock" height="50%" width="50%"></div> -->
     </div>
-    <form>
+      <form [formGroup]="loginForm" style="margin: 20px;" autocomplete="off" (keyup.enter)="loginSubmit()">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" id="username" class="form-control" placeholder="Enter username">

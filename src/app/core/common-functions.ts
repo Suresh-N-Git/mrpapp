@@ -159,7 +159,7 @@ export function nonZeroMatSelectValidation(control: AbstractControl): { [key: st
     // The hasError is identified by the return key string which in this case is ZeroValueSelected
     // declaring selValue as any takes care of a simple drop down where the value and text are same
     const selValue: any = control.value;
-    if (selValue  == null || selValue == 'undefined' || selValue != 0) {
+    if (selValue == null || selValue == 'undefined' || selValue != 0) {
         return null;
     } else {
         return { 'ZeroValueSelected': true };
@@ -444,3 +444,4 @@ export function patchFormFromDisplayJson(
     form.reset();
     form.patchValue(patchObject);
 }
+

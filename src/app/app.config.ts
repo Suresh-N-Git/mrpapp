@@ -10,6 +10,8 @@ import { SharedDirectiveModule } from './SharedDirectivesModule';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpReqResInterceptor } from './core/http-req-res.interceptor';
 
 import localeIn from '@angular/common/locales/en-IN';
 import { registerLocaleData } from '@angular/common';
@@ -29,6 +31,8 @@ export const appConfig: ApplicationConfig = {
     },
 
     importProvidersFrom(FormsModule, ReactiveFormsModule, SharedDirectiveModule, BrowserAnimationsModule),
+
+    provideHttpClient(withInterceptors([HttpReqResInterceptor])),
 
     provideZoneChangeDetection({ eventCoalescing: true }),
 

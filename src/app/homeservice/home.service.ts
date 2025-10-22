@@ -3,7 +3,6 @@ import { HttpParams, HttpClient, HttpHeaders, HttpResponse, HttpRequest } from '
 import { map, retry } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
-// import { environment } from '../../environments/environment';
 import { environment } from '../../environments/environment';
 
 @Injectable({
