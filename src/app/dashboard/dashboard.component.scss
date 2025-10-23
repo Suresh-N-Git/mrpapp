@@ -1,7 +1,10 @@
+/* Row container */
 .row.w-100 {
-  padding: 0 12px; // give left/right padding for the row
-  margin: 0; // remove row default margins
-  gap: 12px; // spacing between cards
+  padding: 0 12px;      // uniform left/right padding
+  margin: 0;            // remove Bootstrap default margins
+  gap: 12px;            // spacing between cards
+  display: flex;
+  flex-direction: column; // stack cards vertically on mobile
 }
 
 .roundedwithboxshadow {
