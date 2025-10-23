@@ -1,44 +1,28 @@
-.equispacedcontent {
+.roundedwithboxshadow {
+  background: #4a90e2; // solid primary color
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 16px;
+  padding: 16px;
+  cursor: pointer;
+
+  div {
+    font-weight: 600;
+    font-size: 1.1rem; // slightly larger for mobile
+    color: #ffffff; // white text for contrast
+    text-align: center;
+  }
+}
+
+// Mobile layout tweaks
+@media (max-width: 600px) {
+  .row {
     display: flex;
-    justify-content: space-between;
-  }
-  
-  .my-class {
-    background-color: red;
-    color: white;
-  }
-  
-  // .highlighted {
-  //   background-color: rgba(0, 128, 0, 0.801) !important;
-  //   td {
-  //     color: #fff !important;
-  //   }
-  // }
-  
-  .mat-column-Code,
-  .mat-column-ValidTill,
-  .mat-column-Select {
-    flex: 0 0  10%;
-    text-align: left;
-  }
-  
-  .mat-column-LodgeName {
-    flex: 0 0  30%;
-    text-align: left;
-  }
-  
-  // .datadashboard td {
-  //  margin-left: 20px;
-  // }
-  
-  table.datadashboard td {
-    padding-left: 20px;
-  }
-  
-  .roundedwithboxshadow {
-    box-shadow: 15px 15px grey;
-    border-radius: 25px;
-    margin-bottom: 20px;
-    margin-left: 10px;
+    flex-direction: column;
+    gap: 12px; // spacing between cards
   }
 
+  .col-sm-12 {
+    margin-left: 0;
+  }
+}
