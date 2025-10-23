@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { SharedMaterialModule } from '../SharedMaterialModule';
 import { SharedDirectiveModule } from '../SharedDirectivesModule';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HomeService } from '../homeservice/home.service';
 import { Subscription } from 'rxjs';
@@ -16,11 +16,22 @@ import { SweetalertService } from '../sweetalert/sweetalert.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
+
 export class LoginComponent {
   loginForm: FormGroup;
   changeForm: FormGroup;
   showPassword = false; // toggle state
   subscription: Subscription = new Subscription();
+
+  TSLoginPlaceHolder: any;
+  TSLoginMaxlength: any;
+  TSLoginRequired: any;
+
+  loginTableSchema = [
+    { txtname: "txtLoginName", DisplayName: "User Name *", Required: "YES", MaxLength: "50" },
+    { txtname: "txtLoginPassword", DisplayName: "Password *", Required: "YES", MaxLength: "20" },
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -47,15 +58,15 @@ export class LoginComponent {
 
     // this.sweetAlert.show('Success', 'Success Message', 'success')
     // this.sweetAlert.autoClose('Success', 'Success Message')
-    this.sweetAlert.confirm('Proceed ?', 'Do you really want to continue?')
-      .then(res => {
-        if (res.isConfirmed) {
-          this.sweetAlert.show('Confirmed', 'Action executed successfully!', 'success');
-        } else {
-          this.sweetAlert.autoClose('Cancelled', 'By User', 'info');
-        }
-      });
-    // this.getLoginTableSchema();
+    // this.sweetAlert.confirm('Proceed ?', 'Do you really want to continue?')
+    //   .then(res => {
+    //     if (res.isConfirmed) {
+    //       this.sweetAlert.show('Confirmed', 'Action executed successfully!', 'success');
+    //     } else {
+    //       this.sweetAlert.autoClose('Cancelled', 'By User', 'info');
+    //     }
+    //   });
+    this.getLoginTableSchema();
     // this.getChangeTableSchema();
   }
 
@@ -72,11 +83,29 @@ export class LoginComponent {
           sessionStorage.setItem('baseURL', response.baseURL + 'Common/');
           sessionStorage.setItem('helpURL', response.helpURL);
         }, error: (err) => {
-          alert(err)
-          // this.alertService.openDialog('Error', err);
+          this.sweetAlert.show('Error', err, "error")
         }
       })
     )
+  }
+
+  getLoginTableSchema() {
+    this.TSLoginPlaceHolder = this.loginTableSchema.reduce((acc, cur) => ({ ...acc, [cur.txtname]: cur.DisplayName }), {});
+    this.TSLoginMaxlength = this.loginTableSchema.reduce((acc, cur) => ({ ...acc, [cur.txtname]: cur.MaxLength }), {});
+    this.TSLoginRequired = this.loginTableSchema.reduce((acc, cur) => ({ ...acc, [cur.txtname]: cur.Required }), {});
+    this.setLoginValidation();
+  }
+
+    setLoginValidation() {
+    Object.keys(this.TSLoginRequired).forEach(element => {
+      let required: string = this.TSLoginRequired[element];
+      if (required.toLowerCase() === 'yes') {
+        if (this.loginForm.get(element)) {
+          this.loginForm.get(element).setValidators([Validators.required]);
+          this.loginForm.get(element).updateValueAndValidity();
+        }
+      }
+    });
   }
 
 
@@ -85,8 +114,7 @@ export class LoginComponent {
       return;
     } else if (this.loginControl['txtLoginPassword'].value
       && this.loginControl['txtLoginPassword'].value.toLowerCase() === 'password') {
-      alert('Default Password Cannot Be used. Change Password to Login')
-      // this.alertService.openDialog('Error', 'Default Password Cannot Be used. Change Password to Login');
+      this.sweetAlert.show('Error', 'Default Password Cannot Be used. Change Password to Login', "error")
       return;
     }
 
@@ -101,8 +129,7 @@ export class LoginComponent {
               this.loginForm.reset();
             })
           }, error: (err) => {
-            alert(err)
-            // this.alertService.openDialog('Error', err);
+            this.sweetAlert.show('Error', err, "error")
           }
         })
     )
