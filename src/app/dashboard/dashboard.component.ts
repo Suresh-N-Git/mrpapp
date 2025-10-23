@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
             sessionStorage.setItem('ssoutletList', JSON.stringify(this.outletList));
             console.log('this.outletList ', this.outletList)
             this.showOutletData = true;
+
             // this.setupDataTable();
           }
         }, error: (error) => {
@@ -78,6 +79,8 @@ export class DashboardComponent implements OnInit {
   }
 
   outletSelected(element) {
+
+    this.sweetAlert.show("Success", JSON.stringify(element), "success")
     console.group(element)
   }
 }

@@ -7,15 +7,15 @@
 <div class="row w-100 gx-5" *ngIf="showOutletData" style="margin-bottom: 20px; margin-top: 20px; padding: 5px;">
     <div class="col-sm-12" *ngFor="let element of outletList">
         <mat-card class="roundedwithboxshadow">
-            <div style="margin-top: 10px; margin-bottom: 20px;">{{ element.Name }}</div>
-            <div>
+            <div style="margin-top: 10px; margin-bottom: 20px;" (click)="outletSelected(element)"> {{ element.Name }} </div>
+            <!-- <div>
                 <button mat-icon-button matTooltip="Select Outlet" (click)="outletSelected(element)">
                     <mat-icon *ngIf="loginDetails?.Outlet_Id != element.Outlet_Id" color="icon-edit"
                         class="icon-large">radio_button_unchecked</mat-icon>
                     <mat-icon *ngIf="loginDetails?.Outlet_Id === element.Outlet_Id" color="icon-edit"
                         class="icon-large">radio_button_checked</mat-icon>
                 </button>
-            </div>
+            </div> -->
         </mat-card>
     </div>
 </div>
