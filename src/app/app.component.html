@@ -1,6 +1,6 @@
 
 <!-- This is for Spinner every time a http call is made -->
-<div class="overlay" *ngIf="isLoading | async">
+<div class="overlay" *ngIf="(isLoading | async) === true">
   <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
   <div class="center">
     <mat-progress-spinner diameter="40" mode="indeterminate" color="primary" value="50">

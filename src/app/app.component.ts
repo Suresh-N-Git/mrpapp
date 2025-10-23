@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { SharedMaterialModule } from './SharedMaterialModule';
 import { HomeService } from './homeservice/home.service';
 import { CommonModule } from '@angular/common';
@@ -20,11 +20,29 @@ export class AppComponent implements OnInit {
 
   constructor(
     public homeService: HomeService,
+    private router: Router,
+    private changDetectorRef: ChangeDetectorRef,
   ) { }
   title = 'mrpapp';
 
 
   ngOnInit(): void {
     this.isLoading = this.homeService.isLoading;
+    this.subscription.add(
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          // this.homeService.show();  // This show is not needed as we are now checking locally for routes
+        } else if (event instanceof NavigationEnd) {
+          // this.homeService.hide() This hide is not needed as we are now checking locally for routes
+        } else if (event instanceof NavigationCancel) {
+
+          this.homeService.hide()
+        } else if (event instanceof NavigationError) {
+
+          this.homeService.hide()
+        }
+        this.changDetectorRef.detectChanges();
+      })
+    )
   }
 }
