@@ -20,7 +20,7 @@
         <input matInput  autocomplete="off" [type]="showPassword ? 'password' : 'text'" id="txtLoginPassword"
           formControlName="txtLoginPassword" [maxlength]="20" trimOnBlur>
       </mat-form-field>
-      <button type="submit" class="btn btn-primary w-100">Sign In</button>
+      <button  type="submit"  [disabled]="loginForm.invalid" class="btn btn-primary w-100">Sign In</button>
     </form>
   </div>
 </div>

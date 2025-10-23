@@ -66,6 +66,7 @@ export class LoginComponent {
     //       this.sweetAlert.autoClose('Cancelled', 'By User', 'info');
     //     }
     //   });
+    this.loginForm.reset();
     this.getLoginTableSchema();
     // this.getChangeTableSchema();
   }
