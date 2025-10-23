@@ -139,7 +139,6 @@ export class HomeService {
     // We use { observe: 'response' } when we want to get the full response inculding headers
     // Default if you do not use it only the body will be returned in the observer
     const jsonObject = { UserName: username, Password: password }
-    console.log('jsonObject ', jsonObject)
     return this.http.post(this.baseURLCommon + 'ValidateLogin', jsonObject, { observe: 'response' })
       .pipe
       (map(res => {
@@ -185,7 +184,8 @@ export class HomeService {
  // In the generia we use  { observe: 'response' } so as to read and save the server system date in loginDetails
   // and not depend on the local system date which may be wrong
   genericAPI(resultJson: any) {
-    return this.http.post(this.baseURLCommon + 'Generic', resultJson, { observe: 'response' }).pipe(map((res: HttpResponse<any>) => {
+    return this.http.post(this.baseURLCommon + 'Generic', resultJson, { observe: 'response' })
+    .pipe(map((res: HttpResponse<any>) => {
       let loginDetails = JSON.parse(sessionStorage.getItem('ssLoginDetails') || '');
       // console.log("Time Zone----------->", res.headers.get('date'), new Date(res.headers.get('date')));
       // Saved in yyyy-MM-dd format to easily use it with new Date() function in UI which requires input in this format

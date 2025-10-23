@@ -124,12 +124,16 @@ export class LoginComponent {
       this.homeService.validateLogin(this.loginControl['txtLoginName'].value,
         this.loginControl['txtLoginPassword'].value).subscribe({
           next: (response: any) => {
+            console.log('response',response)
             sessionStorage.setItem('ssLoginDetails', JSON.stringify(response[0]));
-            sessionStorage.setItem('loginName', this.loginControl['txtLoginName'].value)
-            this.route.navigate(['home/dashboard']).then(() => {
+            // sessionStorage.setItem('loginName', this.loginControl['txtLoginName'].value)
+            this.route.navigate(['dashboard']).then(() => {
               this.loginForm.reset();
             })
           }, error: (err) => {
+            // this.route.navigate(['dashboard']).then(() => {
+            //   this.loginForm.reset();
+            // })
             this.sweetAlert.show('Error', err, "error")
           }
         })
