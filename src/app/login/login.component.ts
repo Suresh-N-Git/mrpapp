@@ -97,7 +97,7 @@ export class LoginComponent {
     this.setLoginValidation();
   }
 
-    setLoginValidation() {
+  setLoginValidation() {
     Object.keys(this.TSLoginRequired).forEach(element => {
       let required: string = this.TSLoginRequired[element];
       if (required.toLowerCase() === 'yes') {

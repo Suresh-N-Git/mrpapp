@@ -139,6 +139,7 @@ export class HomeService {
     // We use { observe: 'response' } when we want to get the full response inculding headers
     // Default if you do not use it only the body will be returned in the observer
     const jsonObject = { UserName: username, Password: password }
+    console.log('jsonObject ', jsonObject)
     return this.http.post(this.baseURLCommon + 'ValidateLogin', jsonObject, { observe: 'response' })
       .pipe
       (map(res => {

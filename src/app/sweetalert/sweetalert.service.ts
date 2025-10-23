@@ -38,8 +38,14 @@ export class SweetalertService {
       // padding: '1em',           // reduce internal spacing
       allowOutsideClick: false,  // 👈 disables click outside
       allowEscapeKey: false,     // 👈 disables ESC key
-      allowEnterKey: false,      // 👈 disables Enter key
       confirmButtonText: confirmText,
+      // allowEnterKey: false,      // 👈 disables Enter key
+      // didOpen: () => {
+      //   // 👇 manually disable Enter key
+      //   Swal.getPopup()?.addEventListener('keydown', (e) => {
+      //     if (e.key === 'Enter') e.preventDefault();
+      //   });
+      // }
     });
   }
 

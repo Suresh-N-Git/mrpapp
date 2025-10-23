@@ -1,2 +1,13 @@
 
-<router-outlet> </router-outlet>  
+<!-- This is for Spinner every time a http call is made -->
+<div class="overlay" *ngIf="isLoading | async">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  <div class="center">
+    <mat-progress-spinner diameter="40" mode="indeterminate" color="primary" value="50">
+    </mat-progress-spinner>
+  </div>
+</div>
+
+<div [class.alternative]="this.homeService.ThemeMode" class="h-100 mat-app-background" #mainElement>
+  <router-outlet></router-outlet>
+</div>
