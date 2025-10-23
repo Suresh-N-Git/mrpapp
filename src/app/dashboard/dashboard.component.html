@@ -4,7 +4,7 @@
     {{this.loginDetails?.LoginName }} &nbsp; {{this.loginDetails?.PcName}}
 </mat-card-title>
 
-<div class="row w-100 gx-5" *ngIf="showOutletData" style="margin-bottom: 20px; margin-top: 20px; padding: 5px;">
+<div class="row w-100 " *ngIf="showOutletData" style="margin-bottom: 20px; margin-top: 20px; padding: 5px;">
     <div class="col-sm-12" *ngFor="let element of outletList">
         <mat-card class="roundedwithboxshadow">
             <div style="margin-top: 10px; margin-bottom: 20px;" (click)="outletSelected(element)"> {{ element.Name }} </div>
