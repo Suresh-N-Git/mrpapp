@@ -1,3 +1,9 @@
+.row.w-100 {
+  padding: 0 12px; // give left/right padding for the row
+  margin: 0; // remove row default margins
+  gap: 12px; // spacing between cards
+}
+
 .roundedwithboxshadow {
   background: #4a90e2; // solid primary color
   border-radius: 16px;
