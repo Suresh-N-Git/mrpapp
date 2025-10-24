@@ -1,54 +1,53 @@
-/* Row container */
 .row.w-100 {
-  padding: 0 12px;      // uniform left/right padding
-  margin: 0;            // remove Bootstrap default margins
-  gap: 12px;            // spacing between cards
+  padding: 0 12px;
+  margin: 0;
+  gap: 12px;
   display: flex;
-  flex-direction: column; // stack cards vertically on mobile
+  flex-direction: column;
 }
 
 .roundedwithboxshadow {
-  background: #4a90e2; // solid primary color
+  background: #4a90e2;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  margin-bottom: 16px;
   padding: 16px;
-  cursor: pointer;
+  color: #fff;
 
-  div {
-    font-weight: 600;
-    font-size: 1.1rem; // slightly larger for mobile
-    color: #ffffff; // white text for contrast
-    text-align: center;
-  }
-}
-
-.stockdiv {
- background: #4a90e2; // solid primary color
-  border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  margin-bottom: 16px;
-  padding: 16px;
-  cursor: pointer;
-
-  div {
-    font-weight: 600;
-    font-size: 1.1rem; // slightly larger for mobile
-    color: black; // white text for contrast
-    text-align: center;
-  }
-
-}
-
-// Mobile layout tweaks
-@media (max-width: 600px) {
-  .row {
+  .card-content {
     display: flex;
     flex-direction: column;
-    gap: 12px; // spacing between cards
+    gap: 12px;
   }
 
-  .col-sm-12 {
-    margin-left: 0;
+  .outlet-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
   }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between; // push buttons to edges
+    align-items: center;
+
+    button {
+      min-width: 100px;
+      font-weight: 500;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    // override Material default tones for better contrast
+    .mat-primary {
+      background-color: #1976d2;
+    }
+    .mat-accent {
+      background-color: #ff9800;
+    }
+  }
+}
+
+.col-sm-12 {
+  padding-left: 0;
+  padding-right: 0;
 }
