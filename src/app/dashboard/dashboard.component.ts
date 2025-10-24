@@ -95,9 +95,7 @@ export class DashboardComponent implements OnInit {
   }
 
   stockList(element) : void {
-
-    this.router.navigate(['stocks'], { state: { outletId: element.Outlet_Id } });
-
-    // this.router.navigate(['stocks'], element.Outlet_Id)
+    console.log('element'), element
+    this.router.navigate(['stocks'], { state: { outletId: element.Outlet_Id, outletName : element.Name } });
   }
 }

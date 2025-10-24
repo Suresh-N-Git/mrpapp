@@ -1,5 +1,14 @@
+<mat-card-content style="border-bottom: 1px black solid">
+  <div class="row w-100" style="font-size: large; margin: 10px;">
+    Stock List - &nbsp;{{selOutletName}}
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search part..." [value]="searchText" (input)="onSearch($event)" />
+  </div>
+</mat-card-content>
+
 <div *ngIf="partsListReady" class="item-list-container">
-  <div class="item-row" *ngFor="let part of partList; trackBy: trackBySlNo">
+  <div class="item-row" *ngFor="let part of filteredList; trackBy: trackBySlNo">
     <div class="item-part">{{ part.Part }}</div>
     <div class="item-details">
       <span class="item-mrp">₹{{ part.MRP | number }}</span>

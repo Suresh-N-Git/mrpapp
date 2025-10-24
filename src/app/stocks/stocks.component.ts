@@ -8,12 +8,13 @@ import { SweetalertService } from '../sweetalert/sweetalert.service';
 import { HomeService } from '../homeservice/home.service';
 
 import { decompressJson, nonZeroMatSelectValidation, removeItemsFromArray } from '../core/common-functions';
+import { SharedMaterialModule } from '../SharedMaterialModule';
 
 
 @Component({
   selector: 'app-stocks',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SharedMaterialModule],
   templateUrl: './stocks.component.html',
   styleUrl: './stocks.component.scss'
 })
@@ -22,7 +23,11 @@ export class StocksComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   loginDetails: any;
   partList: any = [];
+  filteredList: any = [];
+  searchText = '';
+
   selOutlet_Id: number = 0;
+  selOutletName: string = '';
   partsListReady: boolean = false
 
   constructor(
@@ -34,6 +39,7 @@ export class StocksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const state = history.state;
     this.selOutlet_Id = state?.outletId ?? 0;
+    this.selOutletName = state?.outletName ?? '';
     this.loginDetails = JSON.parse(sessionStorage.getItem('ssLoginDetails'));
     this.subscription.add(this.location.subscribe(loc => this.ngOnDestroy()));
     this.getPartsListOutlet();
@@ -56,6 +62,7 @@ export class StocksComponent implements OnInit, OnDestroy {
           }
           const deCompressedData = decompressJson(res);
           this.partList = deCompressedData;
+          this.filteredList = deCompressedData;
           // console.log('this.partList ', this.partList)
           // this.sweetAlert.show('Success', "Part List Downloaded", "success")
           this.partsListReady = true;
@@ -64,6 +71,24 @@ export class StocksComponent implements OnInit, OnDestroy {
         }
       })
     )
+  }
+
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const search = input.value.trim().toLowerCase();
+    this.searchText = search;
+
+    console.log(this.searchText)
+    if (!search) {
+      this.filteredList = [...this.partList];
+      return;
+    }
+
+    this.filteredList = this.partList.filter(p =>
+      p.Part.toLowerCase().includes(search) ||
+      String(p.MRP).includes(search) ||
+      String(p.SoH).includes(search)
+    );
   }
 
   // trackBy function for *ngFor
