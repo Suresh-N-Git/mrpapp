@@ -23,6 +23,7 @@ export class StocksComponent implements OnInit, OnDestroy {
   loginDetails: any;
   partList: any = [];
   selOutlet_Id: number = 0;
+  partsListReady: boolean = false
 
   constructor(
     private homeService: HomeService,
@@ -40,12 +41,12 @@ export class StocksComponent implements OnInit, OnDestroy {
 
   getPartsListOutlet() {
     let inputJSON = {
-      "FromApi": "PartsListOutlet",
-      "PartNo": "",
-      "PartDescription": "",
-      "Login_Id": this.loginDetails.Login_Id,
+      "FromApi": "PWA_PARTLISTWITHSTOCK",
+      "Login_Id": +this.loginDetails.Login_Id,
       "Outlet_Id": +this.selOutlet_Id
     };
+
+    console.log('inputJSON ', inputJSON)
     this.subscription.add(
       this.homeService.genericCompressedAPI(inputJSON).subscribe({
         next: (res: any) => {
@@ -55,7 +56,9 @@ export class StocksComponent implements OnInit, OnDestroy {
           }
           const deCompressedData = decompressJson(res);
           this.partList = deCompressedData;
-           this.sweetAlert.show('Success', "Part List Downloaded", "success")
+          console.log('this.partList ', this.partList)
+          // this.sweetAlert.show('Success', "Part List Downloaded", "success")
+          this.partsListReady = true;
         }, error: (err) => {
           this.sweetAlert.show('Error', err, "error")
         }
@@ -63,6 +66,11 @@ export class StocksComponent implements OnInit, OnDestroy {
     )
   }
 
+  // trackBy function for *ngFor
+  trackBySlNo(index: number, item: { SlNo?: number }): number | number {
+    // return unique id if present, else fallback to index
+    return item && item.SlNo != null ? item.SlNo : index;
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
