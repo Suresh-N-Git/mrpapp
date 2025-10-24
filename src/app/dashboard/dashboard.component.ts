@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ISODateToyyyyMMdd } from '../core/common-functions';
 import { Subject, Subscription } from 'rxjs';
 import { HomeService } from '../homeservice/home.service';
 import { SweetalertService } from '../sweetalert/sweetalert.service';
 import { SharedMaterialModule } from '../SharedMaterialModule';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -23,19 +26,25 @@ export class DashboardComponent implements OnInit {
   serverDate: any;
   showOutletData: boolean = false;
 
+  private lastBack = 0;
+  private exitDelay = 2000; // 2 seconds
+
+
+  
   constructor(
+    private router: Router,
+    private location: Location,
     private homeService: HomeService,
-    public sweetAlert: SweetalertService
+    public sweetAlert: SweetalertService,
+    private snackBar: MatSnackBar
   ) { }
 
-
   ngOnInit(): void {
+
     this.loginDetails = JSON.parse(sessionStorage.getItem('ssLoginDetails'));
     console.log('this.loginDetails ', this.loginDetails)
     let isoSystemDate = (this.loginDetails.SystemDate) ? new Date(this.loginDetails.SystemDate) : new Date();
     this.serverDate = ISODateToyyyyMMdd(isoSystemDate);
-
-
     this.getDashboardDetails();
 
     // if (sessionStorage.getItem('ssoutletList')) {
@@ -47,6 +56,7 @@ export class DashboardComponent implements OnInit {
     //   this.getOutletList();
     // }
   }
+
 
   getDashboardDetails(): void {
 
