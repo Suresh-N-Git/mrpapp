@@ -88,9 +88,13 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  outletSelected(element) {
+  outletSelected(element) : void {
 
     this.sweetAlert.show("Success", JSON.stringify(element), "success")
     console.group(element)
+  }
+
+  stockList() : void {
+    this.router.navigate(['stocks'])
   }
 }

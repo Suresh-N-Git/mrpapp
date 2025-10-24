@@ -23,6 +23,23 @@
   }
 }
 
+.stockdiv {
+ background: #4a90e2; // solid primary color
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 16px;
+  padding: 16px;
+  cursor: pointer;
+
+  div {
+    font-weight: 600;
+    font-size: 1.1rem; // slightly larger for mobile
+    color: black; // white text for contrast
+    text-align: center;
+  }
+
+}
+
 // Mobile layout tweaks
 @media (max-width: 600px) {
   .row {
