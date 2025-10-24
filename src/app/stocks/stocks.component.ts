@@ -56,7 +56,7 @@ export class StocksComponent implements OnInit, OnDestroy {
           }
           const deCompressedData = decompressJson(res);
           this.partList = deCompressedData;
-          console.log('this.partList ', this.partList)
+          // console.log('this.partList ', this.partList)
           // this.sweetAlert.show('Success', "Part List Downloaded", "success")
           this.partsListReady = true;
         }, error: (err) => {

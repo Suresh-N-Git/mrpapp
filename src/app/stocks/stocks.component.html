@@ -1,13 +1,3 @@
-<!-- <div *ngIf="partsListReady" class="item-list-container">
-    <div class="item-row" *ngFor="let item of partList">
-        <div class="item-part">{{ item.Part }}</div>
-        <div class="item-details">
-            <span class="item-mrp">₹{{ item.MRP | number }}</span>
-            <span class="item-soh">Stock: {{ item.SoH }}</span>
-        </div>
-    </div>
-</div> -->
-
 <div *ngIf="partsListReady" class="item-list-container">
   <div class="item-row" *ngFor="let part of partList; trackBy: trackBySlNo">
     <div class="item-part">{{ part.Part }}</div>
