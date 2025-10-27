@@ -13,13 +13,15 @@
                         <h6>Sales</h6>
                         <p>Today : {{ element?.SalesToday || 0 | number:'1.0-0' }}</p>
                         <p>Yesterday : &nbsp;{{element?.SalesYesterday || 0 | number:'1.0-0'}}</p>
-                        <p>This Month : &nbsp;{{element?.SalesThisMonth || 0  | number:'1.0-0'}}</p>
+                        <p>This Month : &nbsp;{{element?.SalesThisMonth || 0 | number:'1.0-0'}}</p>
+                        <p>Last Month : &nbsp;{{element?.SalesLastsMonth || 0 | number:'1.0-0'}}</p>
                     </div>
                     <div class="col-6">
                         <h6>Purchases</h6>
                         <p>Today : &nbsp;{{element?.PurchaseToday || 0 | number:'1.0-0'}}</p>
                         <p>Yesterday : &nbsp;{{element?.PurchaseYesterday || 0 | number:'1.0-0'}}</p>
                         <p>This Month : &nbsp;{{element?.PurchaseThisMonth || 0 | number:'1.0-0'}}</p>
+                        <p>Last Month : &nbsp;{{element?.PurchaseLastMonth || 0 | number:'1.0-0'}}</p>
                     </div>
                 </div>
             </div>
