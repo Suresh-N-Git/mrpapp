@@ -22,7 +22,7 @@
   .outlet-name {
     font-weight: 600;
     font-size: 1.1rem;
-    text-align: center;
+    text-align: left;
   }
 
   .button-row {
@@ -48,6 +48,11 @@
 }
 
 .col-sm-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.col-sm-6 {
   padding-left: 0;
   padding-right: 0;
 }

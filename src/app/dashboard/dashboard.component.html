@@ -5,21 +5,31 @@
     <div class="col-sm-12" *ngFor="let element of outletList">
         <mat-card class="roundedwithboxshadow">
             <div class="card-content">
-                <div class="outlet-name">{{ element.Name }}
-                    <div class="col-sm-6">Sales
-                        <p>Today : &nbsp;{{element.SalesToday}}</p>
-                        <p>Yesterday : &nbsp;{{element.SalesYesterday}}</p>
-                        <p>This Month : &nbsp;{{element.SalesThisMonth}}</p>
+                <div class="row outlet-name">
+                    <div class="col-12">{{ element.OutletName }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Sales</h6>
+                        <p>Today : {{ element?.SalesToday || 0 | number:'1.0-0' }}</p>
+                        <p>Yesterday : &nbsp;{{element?.SalesYesterday || 0 | number:'1.0-0'}}</p>
+                        <p>This Month : &nbsp;{{element?.SalesThisMonth || 0  | number:'1.0-0'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h6>Purchases</h6>
+                        <p>Today : &nbsp;{{element?.PurchaseToday || 0 | number:'1.0-0'}}</p>
+                        <p>Yesterday : &nbsp;{{element?.PurchaseYesterday || 0 | number:'1.0-0'}}</p>
+                        <p>This Month : &nbsp;{{element?.PurchaseThisMonth || 0 | number:'1.0-0'}}</p>
                     </div>
                 </div>
-                <div class="button-row">
-                    <!-- <button mat-raised-button color="primary" (click)="outletSelected(element)">
+            </div>
+            <div class="button-row">
+                <!-- <button mat-raised-button color="primary" (click)="outletSelected(element)">
                         More...
                     </button> -->
-                    <button mat-raised-button color="accent" (click)="stockList(element)">
-                        Stock
-                    </button>
-                </div>
+                <button mat-raised-button color="accent" (click)="stockList(element)">
+                    Stock
+                </button>
             </div>
         </mat-card>
     </div>
