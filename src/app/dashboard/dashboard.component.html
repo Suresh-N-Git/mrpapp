@@ -5,11 +5,17 @@
     <div class="col-sm-12" *ngFor="let element of outletList">
         <mat-card class="roundedwithboxshadow">
             <div class="card-content">
-                <div class="outlet-name">{{ element.Name }}</div>
+                <div class="outlet-name">{{ element.Name }}
+                    <div class="col-sm-6">Sales
+                        <p>Today : &nbsp;{{element.SalesToday}}</p>
+                        <p>Yesterday : &nbsp;{{element.SalesYesterday}}</p>
+                        <p>This Month : &nbsp;{{element.SalesThisMonth}}</p>
+                    </div>
+                </div>
                 <div class="button-row">
-                    <button mat-raised-button color="primary" (click)="outletSelected(element)">
+                    <!-- <button mat-raised-button color="primary" (click)="outletSelected(element)">
                         More...
-                    </button>
+                    </button> -->
                     <button mat-raised-button color="accent" (click)="stockList(element)">
                         Stock
                     </button>

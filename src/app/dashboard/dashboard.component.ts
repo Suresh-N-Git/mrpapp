@@ -26,11 +26,6 @@ export class DashboardComponent implements OnInit {
   serverDate: any;
   showOutletData: boolean = false;
 
-  private lastBack = 0;
-  private exitDelay = 2000; // 2 seconds
-
-
-  
   constructor(
     private router: Router,
     private location: Location,
@@ -62,7 +57,7 @@ export class DashboardComponent implements OnInit {
 
     let inputJSON =
     {
-      FromApi: "OutletListDashBoard",
+      FromApi: "PWA_DASHBOARD",
       Pc_GuId: this.loginDetails?.Pc_GuId,
       Login_Id: this.loginDetails?.Login_Id
     };
