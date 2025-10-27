@@ -1,7 +1,5 @@
 <mat-card-content style="border-bottom: 1px black solid">
-  <div class="row w-100" style="font-size: large; margin: 10px;">
-    Stock List - &nbsp;{{selOutletName}}
-  </div>
+  <div class="row w-100" style="font-size: large; margin: 10px;">{{selOutletName}}</div>
   <div class="search-bar">
     <input type="text" placeholder="Search part..." [value]="searchText" (input)="onSearch($event)" />
   </div>
