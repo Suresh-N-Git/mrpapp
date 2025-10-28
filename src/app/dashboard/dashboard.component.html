@@ -24,14 +24,14 @@
                         <p>Last Month : &nbsp;{{element?.PurchaseLastMonth || 0 | number:'1.0-0'}}</p>
                     </div>
                 </div>
-            </div>
-            <div class="button-row">
-                <!-- <button mat-raised-button color="primary" (click)="outletSelected(element)">
+                <div class="button-row">
+                    <!-- <button mat-raised-button color="primary" (click)="outletSelected(element)">
                         More...
                     </button> -->
-                <button mat-raised-button color="accent" (click)="stockList(element)">
-                    Stock
-                </button>
+                    <button mat-raised-button color="accent" (click)="stockList(element)">
+                        Stock - {{element?.Stock | number:'1.0-0'}}
+                    </button>
+                </div>
             </div>
         </mat-card>
     </div>
