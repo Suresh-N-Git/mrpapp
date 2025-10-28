@@ -63,8 +63,6 @@ export class StocksComponent implements OnInit, OnDestroy {
           const deCompressedData = decompressJson(res);
           this.partList = deCompressedData;
           this.filteredList = deCompressedData;
-          // console.log('this.partList ', this.partList)
-          // this.sweetAlert.show('Success', "Part List Downloaded", "success")
           this.partsListReady = true;
         }, error: (err) => {
           this.sweetAlert.show('Error', err, "error")
@@ -85,9 +83,9 @@ export class StocksComponent implements OnInit, OnDestroy {
     }
 
     this.filteredList = this.partList.filter(p =>
-      p.Part.toLowerCase().includes(search) ||
-      String(p.MRP).includes(search) ||
-      String(p.SoH).includes(search)
+      p.Part.toLowerCase().includes(search) 
+      // ||String(p.MRP).includes(search) 
+      // ||String(p.SoH).includes(search)
     );
   }
 
